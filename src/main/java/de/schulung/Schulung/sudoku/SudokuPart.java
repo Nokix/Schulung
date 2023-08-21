@@ -1,5 +1,7 @@
 package de.schulung.Schulung.sudoku;
 
+import java.util.List;
+
 public class SudokuPart {
 
     private final int[] numbers;

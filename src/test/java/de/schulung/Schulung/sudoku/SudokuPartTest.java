@@ -24,6 +24,24 @@ class SudokuPartTest {
         assertFalse(sudokuPart.isCorrect());
     }
 
+    @Test
+    void checkSudokuPart4() {
+        SudokuPart sudokuPart = new SudokuPart(2, 3, 4, 5, 6, 7, 8, 9, 10);
+        assertFalse(sudokuPart.isCorrect());
+    }
+
+    @Test
+    void checkSudokuPart5() {
+        SudokuPart sudokuPart = new SudokuPart(1);
+        assertTrue(sudokuPart.isCorrect());
+    }
+
+    @Test
+    void checkSudokuPart6() {
+        SudokuPart sudokuPart = new SudokuPart(1, 2, 3);
+        assertTrue(sudokuPart.isCorrect());
+    }
+
 
 
 }
