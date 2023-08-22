@@ -9,7 +9,6 @@ import java.util.stream.IntStream;
 
 public class SudokuPart {
 
-    //private final int[] numbers;
     private final List<Integer> numbersList;
 
     // "..." heißt "varargs"
@@ -27,10 +26,7 @@ public class SudokuPart {
 
     public boolean isCorrect() {
         List<Integer> goal = IntStream.rangeClosed(1, this.numbersList.size()).boxed().toList();
-
-        boolean correctSize = numbersList.size() == goal.size();
-
-        return numbersList.containsAll(goal) && correctSize;
+        return numbersList.containsAll(goal);
     }
 
 }

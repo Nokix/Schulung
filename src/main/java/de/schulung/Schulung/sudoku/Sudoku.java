@@ -13,24 +13,36 @@ import java.util.stream.StreamSupport;
 public class Sudoku implements Iterable<Integer>{
 
     private int size;
-
     @Setter
-    private int[][] board;
+    private List<List<Integer>> board;
 
-    public Sudoku(int[][] board, int size) {
+    public Sudoku(List<List<Integer>> board) {
         this.board = board;
-        this.size = size;
-        if (this.board.length != this.size)
-            throw new IllegalArgumentException();
+        this.size = board.size();
 
-        for (int[] row: board) {
-            if(row.length != this.size)
+        for (List<Integer> row : this.board) {
+            if (row.size() != this.size) {
                 throw new IllegalArgumentException();
+            }
         }
     }
 
+    //@Deprecated(since = "v1.2", forRemoval = true)
     public Sudoku(int[][] board) {
-        this(board, board.length);
+        this(arrayToList(board));
+    }
+
+    private static List<List<Integer>> arrayToList(int[][] intArray) {
+        List<List<Integer>> listOfLists = new ArrayList<>();
+
+        for (int[] row : intArray) {
+            List<Integer> listRow = new ArrayList<>();
+            for (int value : row) {
+                listRow.add(value);
+            }
+            listOfLists.add(listRow);
+        }
+        return listOfLists;
     }
 
     public boolean isSolved() {
@@ -56,12 +68,7 @@ public class Sudoku implements Iterable<Integer>{
 
                     @Override
                     public SudokuPart next() {
-                        int[] row = board[pos];
-                        ArrayList<Integer> rowList = new ArrayList<>();
-                        for (int i : row) {
-                            rowList.add(i);
-                        }
-
+                        List<Integer> rowList = board.get(pos);
                         pos++;
                         return new SudokuPart(rowList);
                     }
