@@ -13,11 +13,7 @@ public class SudokuPart {
 
     // "..." heißt "varargs"
     public SudokuPart(int... numbers) {
-        List<Integer> list = new ArrayList<>();
-        for (int number : numbers) {
-            list.add(number);
-        }
-        this.numbersList = list;
+        this.numbersList = Arrays.stream(numbers).boxed().toList();
     }
 
     public SudokuPart(List<Integer> numbers) {
