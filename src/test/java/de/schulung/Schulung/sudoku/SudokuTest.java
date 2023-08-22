@@ -1,5 +1,7 @@
 package de.schulung.Schulung.sudoku;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -84,4 +86,18 @@ class SudokuTest {
         Sudoku sudoku = new Sudoku(board);
         assertFalse(sudoku.isSolved());
     }
+
+    @Test
+    @Disabled
+    void checkIterator() {
+        Sudoku sudoku = new Sudoku(new int[][]{{1, 2}, {3, 4}});
+
+        for (Integer i : sudoku) {
+            System.out.println(i);
+            assertTrue(i <= 4 && i >= 1);
+        }
+    }
+
+
+
 }

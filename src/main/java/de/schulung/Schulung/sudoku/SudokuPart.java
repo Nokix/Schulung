@@ -1,35 +1,36 @@
 package de.schulung.Schulung.sudoku;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class SudokuPart {
 
-    private final int[] numbers;
+    //private final int[] numbers;
+    private final List<Integer> numbersList;
 
     // "..." heißt "varargs"
     public SudokuPart(int... numbers) {
-        this.numbers = numbers;
+        List<Integer> list = new ArrayList<>();
+        for (int number : numbers) {
+            list.add(number);
+        }
+        this.numbersList = list;
+    }
+
+    public SudokuPart(List<Integer> numbers) {
+        this.numbersList = numbers;
     }
 
     public boolean isCorrect() {
-        int length = this.numbers.length;
+        List<Integer> goal = IntStream.rangeClosed(1, this.numbersList.size()).boxed().toList();
 
-        for (int i = 1; i <= length; i++) {
+        boolean correctSize = numbersList.size() == goal.size();
 
-            int found_i = 0;
-
-            for (int number : numbers) {
-                if (number == i) {
-                    found_i = found_i + 1;
-                }
-            }
-
-            if (found_i != 1) {
-                return false;
-            }
-        }
-
-        return true;
+        return numbersList.containsAll(goal) && correctSize;
     }
 
 }
