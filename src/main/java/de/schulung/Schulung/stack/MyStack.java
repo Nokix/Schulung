@@ -1,7 +1,7 @@
 package de.schulung.Schulung.stack;
 
+import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 public class MyStack<E> {
     private LinkedList<E> list = new LinkedList<>();
@@ -20,4 +20,19 @@ public class MyStack<E> {
     public Boolean isEmpty() {
         return list.isEmpty();
     }
+
+    public void pushAll(Iterable<? extends E> src) {
+        for (E e : src) {
+            this.push(e);
+        }
+
+//        StreamSupport.stream(src.spliterator(), false)
+//                .forEach(this::push);
+    }
+
+    public void popAll(Collection<? super E> dest) {
+        while (!isEmpty()) dest.add(pop());
+    }
+
+
 }
