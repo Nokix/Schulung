@@ -19,11 +19,8 @@ public class Sudoku implements Iterable<Integer>{
     public Sudoku(List<List<Integer>> board) {
         this.board = board;
         this.size = board.size();
-
-        for (List<Integer> row : this.board) {
-            if (row.size() != this.size) {
-                throw new IllegalArgumentException();
-            }
+        if (!this.board.stream().allMatch(row -> row.size() == this.size)) {
+            throw new IllegalArgumentException();
         }
     }
 
@@ -33,25 +30,14 @@ public class Sudoku implements Iterable<Integer>{
     }
 
     private static List<List<Integer>> arrayToList(int[][] intArray) {
-        List<List<Integer>> listOfLists = new ArrayList<>();
-
-        for (int[] row : intArray) {
-            List<Integer> listRow = new ArrayList<>();
-            for (int value : row) {
-                listRow.add(value);
-            }
-            listOfLists.add(listRow);
-        }
-        return listOfLists;
+        return Arrays.stream(intArray).map(
+                ints -> Arrays.stream(ints).boxed().toList()
+        ).toList();
     }
 
     public boolean isSolved() {
-        for (SudokuPart row : this.getRows()) {
-            if (!row.isCorrect()) {
-                return false;
-            }
-        }
-        return true;
+        return StreamSupport.stream(this.getRows().spliterator(), true)
+                .allMatch(SudokuPart::isCorrect);
     }
 
     public Iterable<SudokuPart> getRows() {
