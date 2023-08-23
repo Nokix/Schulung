@@ -2,10 +2,9 @@ package de.schulung.Schulung.sudoku;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class SudokuPart {
 
@@ -13,11 +12,7 @@ public class SudokuPart {
 
     // "..." heißt "varargs"
     public SudokuPart(int... numbers) {
-        List<Integer> list = new ArrayList<>();
-        for (int number : numbers) {
-            list.add(number);
-        }
-        this.numbersList = list;
+        this(Arrays.stream(numbers).boxed().toList());
     }
 
     public SudokuPart(List<Integer> numbers) {
