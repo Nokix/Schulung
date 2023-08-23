@@ -11,7 +11,7 @@ class SudokuTest {
     @Test
     @DisplayName("Create regular 9x9 Sudoku")
     public void createSudoku1() throws Exception {
-        int[][] board = new int[][]{
+        Integer[][] board = new Integer[][]{
                 {8, 3, 5, 4, 1, 6, 9, 2, 7},
                 {2, 9, 6, 8, 5, 7, 4, 3, 1},
                 {4, 1, 7, 2, 9, 3, 6, 5, 8},
@@ -30,7 +30,7 @@ class SudokuTest {
     @Test
     @DisplayName("Fail because for wrong dimensions")
     public void createSudoku2() {
-        int[][] board = new int[][]{
+        Integer[][] board = new Integer[][]{
                 {1, 2, 3, 4},
                 {1, 2, 3, 4}
         };
@@ -41,7 +41,7 @@ class SudokuTest {
 
     @Test
     public void createSudoku3(){
-        int[][] board = new int[][] {{}};
+        Integer[][] board = new Integer[][] {{}};
 
         assertThrows(IllegalArgumentException.class,
                 () -> new Sudoku(board));
@@ -49,7 +49,7 @@ class SudokuTest {
 
     @Test
     public void createSudoku4() {
-        int[][] board = new int[][] {{1}};
+        Integer[][] board = new Integer[][] {{1}};
 
         Sudoku sudoku = new Sudoku(board);
         assertEquals(1, sudoku.getSize());
@@ -57,7 +57,7 @@ class SudokuTest {
 
     @Test
     public void checkSolution1() {
-        int[][] board = new int[][]{
+        Integer[][] board = new Integer[][]{
                 {8, 3, 5, 4, 1, 6, 9, 2, 7},
                 {2, 9, 6, 8, 5, 7, 4, 3, 1},
                 {4, 1, 7, 2, 9, 3, 6, 5, 8},
@@ -73,7 +73,7 @@ class SudokuTest {
 
     @Test
     public void checkSolution2() {
-        int[][] board = new int[][]{
+        Integer[][] board = new Integer[][]{
                 {3, 3, 5, 4, 1, 6, 9, 2, 7},
                 {2, 9, 6, 8, 5, 7, 4, 3, 1},
                 {4, 1, 7, 2, 9, 3, 6, 5, 8},
@@ -90,7 +90,7 @@ class SudokuTest {
     @Test
     @Disabled
     void checkIterator() {
-        Sudoku sudoku = new Sudoku(new int[][]{{1, 2}, {3, 4}});
+        Sudoku sudoku = new Sudoku(new Integer[][]{{1, 2}, {3, 4}});
 
         for (Integer i : sudoku) {
             System.out.println(i);

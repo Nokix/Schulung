@@ -3,7 +3,6 @@ package de.schulung.Schulung.sudoku;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -12,26 +11,26 @@ import java.util.stream.StreamSupport;
 @Getter
 public class Sudoku implements Iterable<Integer>{
 
-    private int size;
+    private Integer size;
     @Setter
     private List<List<Integer>> board;
 
     public Sudoku(List<List<Integer>> board) {
         this.board = board;
         this.size = board.size();
-        if (!this.board.stream().allMatch(row -> row.size() == this.size)) {
+        if (this.board.stream().anyMatch(row -> row.size() != this.size)) {
             throw new IllegalArgumentException();
         }
     }
 
     //@Deprecated(since = "v1.2", forRemoval = true)
-    public Sudoku(int[][] board) {
+    public Sudoku(Integer[][] board) {
         this(arrayToList(board));
     }
 
-    private static List<List<Integer>> arrayToList(int[][] intArray) {
+    private static <T> List<List<T>> arrayToList(T[][] intArray) {
         return Arrays.stream(intArray).map(
-                ints -> Arrays.stream(ints).boxed().toList()
+                innerIntArray -> Arrays.stream(innerIntArray).toList()
         ).toList();
     }
 
@@ -41,24 +40,19 @@ public class Sudoku implements Iterable<Integer>{
     }
 
     public Iterable<SudokuPart> getRows() {
-        return new Iterable<>() {
+        return () -> new Iterator<>() {
+            int pos = 0;
+
             @Override
-            public Iterator<SudokuPart> iterator() {
-                return new Iterator<SudokuPart>() {
-                    int pos = 0;
+            public boolean hasNext() {
+                return pos < size;
+            }
 
-                    @Override
-                    public boolean hasNext() {
-                        return pos < size;
-                    }
-
-                    @Override
-                    public SudokuPart next() {
-                        List<Integer> rowList = board.get(pos);
-                        pos++;
-                        return new SudokuPart(rowList);
-                    }
-                };
+            @Override
+            public SudokuPart next() {
+                List<Integer> rowList = board.get(pos);
+                pos++;
+                return new SudokuPart(rowList);
             }
         };
     }
