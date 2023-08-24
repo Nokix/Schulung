@@ -2,6 +2,7 @@ package de.schulung.Schulung.sudoku;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 @Getter
+@Accessors(chain = true)
 public class Sudoku implements Iterable<Integer>{
 
     private Integer size;
