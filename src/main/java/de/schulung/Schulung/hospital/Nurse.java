@@ -1,23 +1,22 @@
 package de.schulung.Schulung.hospital;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Nurse {
 
-    private String firstName;
+    private String name;
 
-    public Nurse(@Qualifier("lastName") String firstName) {
-        this.firstName = firstName;
+    public Nurse(@Qualifier("nurseName") String name) {
+        this.name = name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String assist() {
-        return "Nurse " + this.firstName + " is helping";
+        return "Nurse " + this.name + " is helping";
     }
 }
