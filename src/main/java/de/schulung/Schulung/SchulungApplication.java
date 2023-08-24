@@ -16,8 +16,13 @@ public class SchulungApplication {
 				SpringApplication.run(SchulungApplication.class, args);
 
 		Doctor doctor = applicationContext.getBean(Doctor.class);
-
 		System.out.println(doctor.assist());
+		doctor.setFirstName("Jun");
+		System.out.println(doctor.assist());
+
+		Doctor doctor2 = applicationContext.getBean(Doctor.class);
+		System.out.println(doctor2.assist());
+
 
 //		Arrays.stream(applicationContext.getBeanDefinitionNames()).
 //				forEach(System.out::println);
