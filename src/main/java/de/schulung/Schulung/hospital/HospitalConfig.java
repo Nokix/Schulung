@@ -3,6 +3,7 @@ package de.schulung.Schulung.hospital;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -16,16 +17,19 @@ public class HospitalConfig {
     }
 
     @Bean
+    @ConditionalOnProperty(value = "modus", havingValue = "super")
     public String lastName() {
         return "Swedan";
     }
 
     @Bean
+    @ConditionalOnProperty(value = "modus", havingValue = "mittel")
     public String nurseFirstName() {
         return "Julia";
     }
 
     @Bean
+    @ConditionalOnMissingBean
     public String nurseLastName() {
         return "Jürgens";
     }

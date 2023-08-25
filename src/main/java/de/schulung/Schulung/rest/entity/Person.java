@@ -1,6 +1,7 @@
 package de.schulung.Schulung.rest.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -12,6 +13,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @ToString
+@Builder
 public class Person {
     @Id
     @GeneratedValue
