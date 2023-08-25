@@ -17,7 +17,6 @@ class CsvPersonServiceTest {
 
     @Test
     public void testCsvRead() throws IOException {
-
         Person person1 = Person.builder()
                 .id(1L)
                 .firstName("Karl")
