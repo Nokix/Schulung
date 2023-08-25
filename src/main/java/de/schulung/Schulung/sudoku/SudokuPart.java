@@ -1,11 +1,14 @@
 package de.schulung.Schulung.sudoku;
 
+import lombok.Builder;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+@Builder
 public class SudokuPart {
 
     private final List<Integer> numbersList;

@@ -17,8 +17,16 @@ class CsvPersonServiceTest {
 
     @Test
     public void testCsvRead() throws IOException {
+
+        Person person1 = Person.builder()
+                .id(1L)
+                .firstName("Karl")
+                .lastName("Karlson")
+                .build();
+        Person person2 = Person.builder().id(2L).firstName("Theo").lastName("Logi").build();
+
         List<Person> personList = csvPersonService.readCsv("persons.csv");
 
-        personList.forEach(System.out::println);
+        assertEquals(List.of(person1, person2), personList);
     }
 }
